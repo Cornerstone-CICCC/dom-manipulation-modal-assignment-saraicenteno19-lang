@@ -1,9 +1,21 @@
-console.log("here");
+const openModalButton = document.querySelector("#openModal");
+const modal = document.querySelector("#modal");
 
-// select button element
+let modalTimer;
 
-// add event listener on click to button
-// remove class invisible from div modal
+openModalButton.addEventListener("click", () => {
+  modal.classList.remove("invisible");
 
-// add event listener on key press Escape
-// add class invisible to div modal
+  clearTimeout(modalTimer);
+
+  modalTimer = setTimeout(() => {
+    modal.classList.add("invisible");
+  }, 5000);
+});
+
+document.addEventListener("keyup", (event) => {
+  if (event.key === "Escape" || event.keyCode === 27) {
+    modal.classList.add("invisible");
+    clearTimeout(modalTimer);
+  }
+});
